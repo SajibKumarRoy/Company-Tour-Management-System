@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company_Tour_Management_System</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="header">
+        <img id="logo" src="~/images/BS-23.png"/>
+        <div class="header-right">
+            <a class="active" asp-action="Index">Home</a>
+            <a asp-action="InitialList">Initial List</a>
+            <a asp-action="FinalList">Final List</a>
+            <a asp-action="AddParticipants">Add Participants</a>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+    <footer><p>Copyright 2021-2022 by Sajib. All Rights Reserved.</p></footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@model Participant
+<div class="container">
+    <form method="post">
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-75">
+                <input type="text" asp-for="Name" disabled >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Department"></label>
+            </div>
+            <div class="col-75">
+                <input type="text" asp-for="Department" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Position"></label>
+            </div>
+            <div class="col-75">
+                <input type="text" asp-for="Position" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-75">
+                <input type="text" asp-for="Email" disabled>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Delete" style="background-color:red">
+        </div>
+    </form>
+</div>
