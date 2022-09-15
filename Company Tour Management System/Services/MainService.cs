@@ -13,12 +13,13 @@ namespace Company_Tour_Management_System.Services
         }
         public void InsertP(Participant _obj)
         {
+            _obj.CreatedTime = DateTime.Now.Date;
             _db.Participants.Add(_obj);
             _db.SaveChanges();
         }
-        public IEnumerable<Participant> GetParticipants(int state)
+        public List<Participant> GetParticipants(int state)
         {
-            return _db.Participants.Where(x=>x.State==state);
+            return _db.Participants.Where(x=>x.State==state).ToList();
         }
         public Participant get(int Id)
         {
@@ -33,6 +34,14 @@ namespace Company_Tour_Management_System.Services
         {
              _db.Participants.Update(p);
             _db.SaveChanges();
+        }
+        public List<Participant> GetInitial(string SearchText)
+        {
+            return _db.Participants.Where(x => x.State ==0&&x.Name.Contains(SearchText)).ToList();
+        }
+        public List<Participant> GetFinal(string SearchText)
+        {
+            return _db.Participants.Where(x => x.State == 1 && x.Name.Contains(SearchText)).ToList();
         }
     }
 }

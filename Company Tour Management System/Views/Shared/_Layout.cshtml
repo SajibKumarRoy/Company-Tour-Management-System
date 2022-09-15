@@ -4,22 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Company_Tour_Management_System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  
 </head>
 <body>
     <div class="header">
         <img id="logo" src="~/images/BS-23.png"/>
         <div class="header-right">
-            <a class="active" asp-action="Index">Home</a>
-            <a asp-action="InitialList">Initial List</a>
-            <a asp-action="FinalList">Final List</a>
-            <a asp-action="AddParticipants">Add Participants</a>
+            <a class="@Html.ActiveClass("Home", "Index")" asp-action="Index">Home</a>
+            <a class="@Html.ActiveClass("Home", "InitialList")" asp-action="InitialList">Initial List</a>
+            <a class="@Html.ActiveClass("Home", "FinalList")" asp-action="FinalList">Final List</a>
+            <a class="@Html.ActiveClass("Home", "AddParticipants")" asp-action="AddParticipants">Add Participants</a>
         </div>
     </div>
 
     <div>
         @RenderBody()
     </div>
-    <footer><p>Copyright 2021-2022 by Sajib. All Rights Reserved.</p></footer>
+    <div class="footer"><p>Copyright 2021-2022 by Sajib. All Rights Reserved.</p></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </html>

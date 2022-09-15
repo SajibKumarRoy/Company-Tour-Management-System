@@ -15,5 +15,6 @@ namespace Company_Tour_Management_System.Models
         [Required]
         public string Email { get; set; }
         public int State { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
 }

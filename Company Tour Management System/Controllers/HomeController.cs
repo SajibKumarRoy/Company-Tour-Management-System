@@ -18,15 +18,36 @@ namespace Company_Tour_Management_System.Controllers
         {
             return View();
         }
-        public IActionResult InitialList()
+       
+        public IActionResult InitialList(int pageNumber = 1, string SearchText = "")
         {
-            IEnumerable<Participant> participant= obj.GetParticipants(0);
-            return View(participant);
+            
+            List<Participant> participant;
+            if (SearchText != "" && SearchText != null)
+            {
+                participant = obj.GetInitial(SearchText);
+            }
+            else
+            {
+                participant = obj.GetParticipants(0);
+            }
+            int pageSize = 2;
+            return View(PaginatedList<Participant>.Create(participant,pageNumber,pageSize));
         }
-        public IActionResult FinalList()
+        public IActionResult FinalList(int pageNumber = 1, string SearchText = "")
         {
-            IEnumerable<Participant> participant = obj.GetParticipants(1);
-            return View(participant);
+
+            List<Participant> participant;
+            if (SearchText != "" && SearchText != null)
+            {
+                participant = obj.GetFinal(SearchText);
+            }
+            else
+            {
+                participant = obj.GetParticipants(1);
+            }
+            int pageSize = 2;
+            return View(PaginatedList<Participant>.Create(participant, pageNumber, pageSize)); ;
         }
         public IActionResult AddParticipants()
         {
@@ -35,6 +56,7 @@ namespace Company_Tour_Management_System.Controllers
         [HttpPost]
         public IActionResult AddParticipants(Participant _obj)
         {
+          
             obj.InsertP(_obj);
             return RedirectToAction("AddParticipants", "Home");
         }
