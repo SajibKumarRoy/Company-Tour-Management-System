@@ -1,99 +1,58 @@
 ﻿using Company_Tour_Management_System.Models;
 using Company_Tour_Management_System.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
+using System.Threading;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Company_Tour_Management_System.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        #region Ctror
         private readonly IMainService obj;
-
-        public HomeController(IMainService obj)
+        private readonly IHostingEnvironment env;
+        public HomeController(IMainService obj, IHostingEnvironment env)
         {
+            this.env = env;
             this.obj = obj;
         }
-
+        #endregion
+        #region Methods
         public IActionResult Index()
         {
             return View();
         }
-       
-        public IActionResult InitialList(int pageNumber = 1, string SearchText = "")
-        {
-            
-            List<Participant> participant;
-            if (SearchText != "" && SearchText != null)
-            {
-                participant = obj.GetInitial(SearchText);
-            }
-            else
-            {
-                participant = obj.GetParticipants(0);
-            }
-            int pageSize = 2;
-            return View(PaginatedList<Participant>.Create(participant,pageNumber,pageSize));
-        }
-        public IActionResult FinalList(int pageNumber = 1, string SearchText = "")
-        {
 
-            List<Participant> participant;
-            if (SearchText != "" && SearchText != null)
-            {
-                participant = obj.GetFinal(SearchText);
-            }
-            else
-            {
-                participant = obj.GetParticipants(1);
-            }
-            int pageSize = 2;
-            return View(PaginatedList<Participant>.Create(participant, pageNumber, pageSize)); ;
-        }
-        public IActionResult AddParticipants()
+        public async Task<IActionResult> DestinationGallery()
         {
+            var imgData =await obj.imggetAsync();
+            if (imgData == null)
+                return View();
+            else
+                return View(imgData);
+        }
+
+        public IActionResult RequestPage()
+        {
+            ViewBag.Success = false;
             return View();
         }
         [HttpPost]
-        public IActionResult AddParticipants(Participant _obj)
+        public async Task <IActionResult> RequestPage(Participant _obj)
         {
-          
-            obj.InsertP(_obj);
-            return RedirectToAction("AddParticipants", "Home");
+           
+            await obj.InsertPAsync(_obj);
+            ViewBag.Success = true;
+            ModelState.Clear();
+            return View();
         }
-        public IActionResult Delete(int? Id)
-        {
-            var participant = obj.get((int)Id);
-            return View(participant);
-        }
-        [HttpPost]
-        public IActionResult Delete(Participant p)
-        {
-            obj.delete(p);
-            return RedirectToAction("InitialList", "Home");
-        }
-        public IActionResult Edit(int? Id)
-        {
-            var participant = obj.get((int)Id);
-            return View(participant);
-        }
-        [HttpPost]
-        public IActionResult Edit(Participant p)
-        {
-            obj.EditP(p);
-            return RedirectToAction("InitialList", "Home");
-        }
-        public IActionResult Confirm(int? Id)
-        {
-            var participant = obj.get((int)Id);
-            participant.State = 1;
-            obj.EditP(participant);
-            return RedirectToAction("InitialList", "Home");
-        }
-        public IActionResult Refund(int? Id)
-        {
-            var p = obj.get((int)Id);
-            obj.delete(p);
-            return RedirectToAction("FinalList", "Home");
-        }
+        #endregion
+
     }
+
 }

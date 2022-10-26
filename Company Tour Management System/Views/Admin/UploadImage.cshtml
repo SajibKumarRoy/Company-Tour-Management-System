@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+@model ImageCreateModel
+<div class="container">
+    <form method="post" asp-action="UploadImage" enctype="multipart/form-data" class="text-left">
+        <label>Add Image</label>
+        <input type="file" asp-for="ImagePath" />
+        <br />
+        <label>Description</label>
+        <textarea class="form-control" asp-for="Name"></textarea>
+        <button class="btn btn-primary btn-image mt-3" type="submit">Submit</button>
+    </form>
+</div>
+

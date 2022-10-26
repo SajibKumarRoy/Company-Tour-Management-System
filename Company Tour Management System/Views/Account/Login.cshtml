@@ -1,0 +1,39 @@
+﻿@model SignInModel
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width" />
+<title>Sign In</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="~/css/signUpStyle.css" asp-append-version="true" />
+<body>
+
+    <form method="post"  style="border:1px solid #ccc">
+        <div class="container">
+            <h1>Login</h1>
+            <hr>
+            <div asp-validation-summary="ModelOnly" style="color:red;"></div>
+            <div >
+                <label asp-for="Email" ></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email" ></span>
+            </div>
+            <div>
+                <label asp-for="Password" ></label>
+                <input asp-for="Password"  />
+                <span asp-validation-for="Password" ></span>
+            </div>
+            <div >
+                <label >
+                    <input type="checkbox" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                </label>
+            </div>
+
+            <div>
+                <button type="submit" class="signupbtn">Login</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>
+
