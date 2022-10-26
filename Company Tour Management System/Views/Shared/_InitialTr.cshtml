@@ -1,0 +1,25 @@
+﻿@model Participant
+@{
+    string color = "";
+    if (Model.CreatedTime == DateTime.Now.Date)
+    {
+        color = "#f2f2f2";
+    }
+    else
+    {
+        color = "#ffffff";
+    }
+    <tr style="background-color:@color">
+        <td>@Model.Name</td>
+        <td>@Model.Department</td>
+        <td>@Model.Position</td>
+        <td>@Model.Email</td>
+        <td>
+            <a class="button" asp-route-Id=@Model.Id asp-action="Delete">Delete</a>
+            <a class="button button-1" asp-route-Id=@Model.Id asp-action="Edit">
+                Edit
+            </a>
+            <a class="button button-2" asp-route-Id=@Model.Id asp-action="Confirm">Confirm</a>
+        </td>
+    </tr>
+}

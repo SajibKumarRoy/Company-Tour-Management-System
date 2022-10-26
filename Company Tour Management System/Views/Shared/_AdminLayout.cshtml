@@ -9,13 +9,16 @@
 
 </head>
 <body>
-    <div class="header" style="z-index: 5;">
+    <div class="header">
         <img id="logo" src="~/images/BS-23.png" />
         <div class="header-right">
-            <a class="@Html.ActiveClass("Home", "Index")" asp-Controller="Home" asp-action="Index">Home</a>
-            <a class="@Html.ActiveClass("Home", "DestinationGallery")" asp-Controller="Home" asp-action="DestinationGallery">Destination Gallery</a>
-            <a class="@Html.ActiveClass("Home", "RequestPage")" asp-Controller="Home" asp-action="RequestPage">Request Page</a>
-            <partial name="_LoginPartial"/>
+            <a class="@Html.ActiveClass("Admin", "Index")" asp-Controller="Admin" asp-action="Index">Initial List</a>
+            <a class="@Html.ActiveClass("Admin", "FinalList")" asp-Controller="Admin" asp-action="FinalList">Final List</a>
+            <a class="@Html.ActiveClass("Admin", "AddParticipants")" asp-Controller="Admin" asp-action="AddParticipants">Add Participants</a>
+            <a class="@Html.ActiveClass("Admin", "UploadImage")" asp-Controller="Admin" asp-action="UploadImage">Upload Images</a>
+            <a class="@Html.ActiveClass("Admin", "ImageGallery")" asp-Controller="Admin" asp-action="ImageGallery">Gallery</a>
+
+            <partial name="_AdminPartial"/>
         </div>
 
     </div>
@@ -29,4 +32,9 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script>
+    $('.checkboxId').click(function () {
+        $('#formId').submit();  
+    });
+</script>
 </html>

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+@model IEnumerable<Image>
+<div class="container mb-5">
+    <form method="post">
+        <table class="table table-striped">
+            <thead class="table-black">
+                <tr>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var img in Model)
+                    {
+                        <tr>
+                            <td><img src="@img.filePath" width="150px" /></td>
+                            <td><button asp-route-id="@img.Id" class="btn-primary btn-danger btn-dlt">Delete</button></td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </form>
+</div>

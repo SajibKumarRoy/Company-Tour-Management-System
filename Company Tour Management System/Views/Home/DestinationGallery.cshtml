@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Image>
+<div class="container mb-5">
+    <h2>A Preview of Our Destination</h2>
+    <div class="row">
+        @if (Model != null)
+        {
+            foreach (var img in Model)
+            {
+                <div class="col-md-6">
+                    <div class="gallery">
+                        <img src="@img.filePath">
+                        <div class="desc">@img.Name</div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
